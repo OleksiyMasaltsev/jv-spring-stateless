@@ -6,6 +6,7 @@ import mate.academy.model.dto.UserRegistrationDto;
 import mate.academy.model.dto.UserResponseDto;
 import mate.academy.service.UserService;
 import mate.academy.service.mapper.UserMapper;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,6 +45,7 @@ public class UserController {
         return userMapper.mapToDto(user);
     }
 
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         userService.delete(id);
